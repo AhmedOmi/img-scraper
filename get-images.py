@@ -1,12 +1,14 @@
-# model scraping for themodelbot
+# Scraper for required Image
 
 import requests
 from bs4 import BeautifulSoup as bs
 import os
 
 # website with model images
-requiredImage = 'colors'
-url = 'https://unsplash.com/search/photos/' + requiredImage
+Image = 'colors'
+
+# 
+url = 'https://unsplash.com/search/photos/' + Image
 # image file name variable
 x = 0
 
@@ -18,11 +20,11 @@ soup = bs(page.text, 'html.parser')
 image_tags = soup.findAll('img')
 
 # create directory for model images
-if not os.path.exists(requiredImage):
-    os.makedirs(requiredImage)
+if not os.path.exists(Image):
+    os.makedirs(Image)
 
 # move to new directory
-os.chdir(requiredImage)
+os.chdir(Image)
 
 
 
@@ -32,7 +34,7 @@ for image in image_tags:
         url = image['src']
         response = requests.get(url)
         if response.status_code == 200:
-            with open(requiredImage + '-' + str(x) + '.jpg', 'wb') as f:
+            with open(Image + '-' + str(x) + '.jpg', 'wb') as f:
                 f.write(requests.get(url).content)
                 f.close()
                 x += 1
