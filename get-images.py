@@ -1,49 +1,40 @@
 # Scraper for required Image
 
 # import required modules
-import requests
-from bs4 import BeautifulSoup as bs
-import os
+import requests # for get requests
+from bs4 import BeautifulSoup as bs # for scraping
+import os # for creating dirs & writing files,
 
-# website with model images
-Image = 'colors'
 
-# 
-url = 'https://unsplash.com/search/photos/' + Image
-# image file name variable
-x = 0
+Image = 'colors' # the required image
+url = 'https://unsplash.com/search/photos/' + Image # the unsplash api for searching a required image
+x = 0 # set the var x to 0
 
 # download page for parsing
-page = requests.get(url)
-soup = bs(page.text, 'html.parser')
+page = requests.get(url) # get the url 
+soup = bs(page.text, 'html.parser') # parse it with beautifulSoup, imported as bs, store it in soup var
 
 # locate all elements with image tag
-image_tags = soup.findAll('img')
+image_tags = soup.findAll('img') 
 
-# create directory for model images
-if not os.path.exists(Image):
-    os.makedirs(Image)
+# create directory for required images
+if not os.path.exists(Image): # if the dir doesn't exist
+    os.makedirs(Image) # create the dir
 
 # move to new directory
 os.chdir(Image)
 
-
-
-# writing images
-for image in image_tags:
-    try:
-        url = image['src']
-        response = requests.get(url)
-        if response.status_code == 200:
-            with open(Image + '-' + str(x) + '.jpg', 'wb') as f:
-                f.write(requests.get(url).content)
-                f.close()
-                x += 1
-    except:
-        pass
-
-
-
-
-
-
+# writing images in the created folder
+for image in image_tags: # for each image in the image_tags array,
+    try: # go thru this loop
+        url = image['src'] # set the url variable to the src of the image tags
+        response = requests.get(url) # go to the url and store it in the response var
+        if response.status_code == 200: # if the status code === 200
+            with open(Image + '-' + str(x) + '.jpg', 'wb') as f: # open the image as the mentioned file format, (w for writing, and b for binary)
+                # as the format is jpg, it needs to be saved as a binary file
+                # here "f" is just a variable assignment
+                f.write(requests.get(url).content) # get the content of the url and write/save in the created dir
+                f.close() # stop writing/saving the image
+                x += 1 # increment x by 1
+    except: # on excpetion (i.e, status code !== 200, or other errors)
+        pass # repeat the loop again
