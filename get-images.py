@@ -9,6 +9,7 @@ import os # for creating dirs & writing files,
 Image = 'colors' # the required image
 url = 'https://unsplash.com/search/photos/' + Image # the unsplash api for searching a required image
 x = 0 # set the var x to 0
+filePath = 'images/' + Image # file path for the directory
 
 # download page for parsing
 page = requests.get(url) # get the url 
@@ -18,11 +19,11 @@ soup = bs(page.text, 'html.parser') # parse it with beautifulSoup, imported as b
 image_tags = soup.findAll('img') 
 
 # create directory for required images
-if not os.path.exists(Image): # if the dir doesn't exist
-    os.makedirs(Image) # create the dir
+if not os.path.exists(filePath): # if the dir doesn't exist
+    os.makedirs(filePath) # create the dir
 
 # move to new directory
-os.chdir(Image)
+os.chdir(filePath)
 
 # writing images in the created folder
 for image in image_tags: # for each image in the image_tags array,
