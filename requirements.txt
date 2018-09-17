@@ -1,4 +1,3 @@
 BeautifulSoup
 requests
-tweepy
 bs4
