@@ -1,4 +1,4 @@
-# Image Scrapper
+# Image Scraper
 
 ## Description
 
