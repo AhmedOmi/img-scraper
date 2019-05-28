@@ -1,11 +1,7 @@
 # Image Scraper
-
-## Description
-
-This is a small python script to get images from Unsplash.
+A small python image scraper to get images from Unsplash.
 
 ## How To Use
-
 0. Clone the repo
 1. Install the requirements either by doing `pip install -r requirements.txt`
 2. Open up the `get-images.py` in a code editor
@@ -14,7 +10,6 @@ This is a small python script to get images from Unsplash.
 
 
 ## Requirements
-
 1. Python (any version)
 2. Pip
 
