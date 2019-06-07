@@ -58,4 +58,4 @@ for image in image_tags: # for each image in the image_tags array,
     except: # on excpetion (i.e, status code !== 200, or other errors)
         pass # repeat the loop again
 ```
-
+### Note: Currently works with Unsplash only.
